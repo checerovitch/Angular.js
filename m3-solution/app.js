@@ -5,7 +5,7 @@
     .controller('NarrowItDownController', NarrowItDownController)
     .service('MenuSearchService', MenuSearchService)
     .directive('foundItems', FoundItemsDirective)
-    .constant('API_URL', 'https://davids-restaurant.herokuapp.com/');
+    .constant('API_Url', "https://www.davids-restaurant.herokuapp.com/");
   
     function FoundItemsDirective(){
       var ddo = {
@@ -63,13 +63,13 @@
   
     }
   
-    MenuSearchService.$inject = ['$http', 'API_URL'];
-    function MenuSearchService($http, API_URL){
+    MenuSearchService.$inject = ['$http', 'API_Url'];
+    function MenuSearchService($http, API_Url){
       let service = this;
   
       service.getMatchedMenuItems = function(searchTerm){
         let items = [];
-        return $http({method: "GET", url: (API_URL + 'menu_items.json') })
+        return $http({method: "GET", url: (API_Url + 'menu_items.json') })
         .then(function success(response){
           let menuItems = response.data.menu_items;
           let itemsLength = menuItems.length;
@@ -80,7 +80,7 @@
             }
           }
           console.log("Elements retrieved: " + items.length);
-  
+   
           return items;
   
         }).catch(function (error) {
